@@ -1,0 +1,9 @@
+package com.demo.api.utils;
+
+public class Constants {
+
+  public static final String KEY = "";
+  public static final String SECRET = "";
+  public static final String ORKES_URL = "";
+  
+}
