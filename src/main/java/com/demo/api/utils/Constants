@@ -1,9 +1,12 @@
 package com.demo.api.utils;
 
+import java.util.List;
+
 public class Constants {
 
   public static final String KEY = "";
   public static final String SECRET = "";
   public static final String ORKES_URL = "";
-  
+  public static final List<String> SERVICE_TYPES = List.of("LOST", "DAMAGE");
+
 }
