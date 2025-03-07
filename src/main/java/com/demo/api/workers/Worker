@@ -1,0 +1,29 @@
+package com.demo.api.workers;
+
+import static com.demo.api.utils.Constants.*;
+import com.netflix.conductor.sdk.workflow.task.InputParam;
+import com.netflix.conductor.sdk.workflow.task.WorkerTask;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class Worker {
+
+  private static final Logger logger = LoggerFactory.getLogger(Worker.class);
+
+  @WorkerTask("")
+  public String workerTask(@InputParam("cardNumber") String cardNumber, @InputParam("serviceType") String serviceType) {
+    logger.info("Work received - cardNumber: {}, serviceType: {}", cardNumber, serviceType);
+    String response = null;
+    if (cardNumber == null && cardNumber.length() != 16)
+      response = "invalidCardNumber";
+    if (!SERVICE_TYPES.contains(serviceType))
+      response = "invalidSvcType";
+    if ((cardNumber == null || cardNumber.length() != 16) && !SERVICE_TYPES.contains(serviceType))
+      response = "invalidRequest";
+
+    logger.debug("Response: {}", response);
+    logger.info("Work completed");
+    return response
+  }
+
+}
